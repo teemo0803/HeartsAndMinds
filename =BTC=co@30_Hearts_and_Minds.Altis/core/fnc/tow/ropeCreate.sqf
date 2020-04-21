@@ -26,7 +26,16 @@ params [
 ];
 
 if !((isVehicleCargo btc_log_vehicle_selected) isEqualTo objNull) exitWith {(localize "STR_BTC_HAM_LOG_TOW_ALREADYTOWED") call CBA_fnc_notify;};
-if (_tower setVehicleCargo btc_log_vehicle_selected) exitWith {};
+if (alive btc_log_vehicle_selected && {_tower setVehicleCargo btc_log_vehicle_selected}) exitWith {};
+private _canViV_wreck = false;
+if (!alive btc_log_vehicle_selected) then {
+    private _fakeVehicle = typeOf btc_log_vehicle_selected createVehicleLocal [0, 0, 0];
+    _canViV_wreck = _tower canVehicleCargo _fakeVehicle isEqualTo [true, true];
+    deleteVehicle _fakeVehicle;
+};
+if (_canViV_wreck) exitWith {
+    [btc_log_vehicle_selected, _tower] remoteExecCall ["btc_fnc_tow_ViV", 2];
+};
 
 private _towing = _tower getVariable ["btc_towing", objNull];
 if (!isNull _towing) exitWith {(localize "STR_BTC_HAM_LOG_TOW_ALREADYTOWED") call CBA_fnc_notify;};
