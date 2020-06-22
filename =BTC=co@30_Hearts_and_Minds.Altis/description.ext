@@ -4,6 +4,7 @@ author = "Giallustio";
 onLoadName = $STR_BTC_HAM_DESCR_NAME;
 onLoadMission = $STR_BTC_HAM_DESCR_MISSION;
 enabledebugconsole = 1;
+respawnButton = 0;
 
 #include "core\fnc\common\dlg.hpp"
 #include "core\fnc\fob\dlg.hpp"
@@ -52,3 +53,26 @@ class Extended_InitPost_EventHandlers {
 // Disable BI wreck system (H&M handle it internally)
 wreckManagerMode = 0;
 corpseManagerMode = 0;
+
+
+class CfgDebriefing
+{  
+	class TS
+	{
+		title = "您的插件设置有误";
+		subtitle = "没有检测到已启用的Task Force Arrowhead Radio插件";
+		description = "请加入QQ群:716160300或访问armhub.tudoub.cn以获取解决方案";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+    class plot
+	{
+		title = "栏位尚未解锁";
+		subtitle = "请等待人数达到解锁指标后进入该栏位";
+		description = "请加入QQ群:716160300或访问armhub.tudoub.cn以获取进一步信息";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+};
